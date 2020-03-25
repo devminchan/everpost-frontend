@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul id="post-card-container">
     <li v-for="post in posts" :key="post.id">
       <PostCard :post="post"></PostCard>
     </li>
@@ -36,6 +36,30 @@ export default class Home extends Vue {
         content: 'Content',
         fileUrls: [],
       },
+      {
+        id: 4,
+        title: 'Title3',
+        content: 'Content',
+        fileUrls: [],
+      },
+      {
+        id: 5,
+        title: 'Title3',
+        content: 'Content',
+        fileUrls: [],
+      },
+      {
+        id: 6,
+        title: 'Title3',
+        content: 'Content',
+        fileUrls: [],
+      },
+      {
+        id: 7,
+        title: 'Title3',
+        content: 'Content',
+        fileUrls: [],
+      },
     ];
 
     return {
@@ -44,3 +68,18 @@ export default class Home extends Vue {
   }
 }
 </script>
+
+<style lang="scss">
+#post-card-container {
+  list-style-type: none;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#post-card-container > li {
+  margin-right: 40px;
+  @media (max-width: 1023px) {
+    margin-right: 24px;
+  }
+}
+</style>
