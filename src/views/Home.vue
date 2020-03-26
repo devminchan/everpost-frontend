@@ -8,7 +8,9 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import PostCard, { PostCardData } from '@/components/PostCard.vue';
+import PostCard from '@/components/PostCard.vue';
+import { getModule } from 'vuex-module-decorators';
+import GlobalState from '../store/GlobalState';
 
 @Component({
   components: {
@@ -16,55 +18,12 @@ import PostCard, { PostCardData } from '@/components/PostCard.vue';
   },
 })
 export default class Home extends Vue {
-  data() {
-    const datas: PostCardData[] = [
-      {
-        id: 1,
-        title: 'Title1',
-        content: 'Content',
-        fileUrls: [],
-      },
-      {
-        id: 2,
-        title: 'Title2',
-        content: 'Content',
-        fileUrls: [],
-      },
-      {
-        id: 3,
-        title: 'Title3',
-        content: 'Content',
-        fileUrls: [],
-      },
-      {
-        id: 4,
-        title: 'Title3',
-        content: 'Content',
-        fileUrls: [],
-      },
-      {
-        id: 5,
-        title: 'Title3',
-        content: 'Content',
-        fileUrls: [],
-      },
-      {
-        id: 6,
-        title: 'Title3',
-        content: 'Content',
-        fileUrls: [],
-      },
-      {
-        id: 7,
-        title: 'Title3',
-        content: 'Content',
-        fileUrls: [],
-      },
-    ];
+  posts: Post[] = [];
 
-    return {
-      posts: datas,
-    };
+  created() {
+    const globalState = getModule(GlobalState, this.$store);
+
+    this.posts = globalState.posts;
   }
 }
 </script>
