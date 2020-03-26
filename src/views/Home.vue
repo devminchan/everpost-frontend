@@ -24,7 +24,6 @@ export default class Home extends Vue {
     const globalState = getModule(GlobalState, this.$store);
 
     await globalState.fetchPosts();
-    console.log(globalState.posts);
     this.posts = globalState.posts;
   }
 }
