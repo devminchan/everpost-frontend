@@ -27,10 +27,15 @@ export default class Login extends Vue {
   email = '';
   password = '';
 
-  handleLogin() {
+  async handleLogin() {
     const globalState = getModule(GlobalState, this.$store);
 
-    console.log(globalState.posts);
+    await globalState.requestLogin({
+      email: this.email,
+      password: this.password,
+    });
+
+    console.log('token', globalState.token);
   }
 }
 </script>

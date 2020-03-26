@@ -15,6 +15,13 @@ const $http = axios.create({
 })
 export default class GlobalState extends VuexModule {
   posts: Post[] = [];
+  token = '';
+
+  @MutationAction({ mutate: ['token'] })
+  async requestLogin(request: LoginRequest) {
+    const res = await $http.post('/auth/email', request);
+    return res.data;
+  }
 
   @MutationAction({ mutate: ['posts'] })
   async fetchPosts() {
