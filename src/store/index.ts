@@ -5,4 +5,8 @@ import GlobalState from './GlobalState';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store<GlobalState>({});
+export default new Vuex.Store({
+  modules: {
+    GlobalState,
+  },
+});

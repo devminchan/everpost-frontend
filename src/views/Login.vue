@@ -19,6 +19,8 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
+import GlobalState from '@/store/GlobalState';
+import { getModule } from 'vuex-module-decorators';
 
 @Component
 export default class Login extends Vue {
@@ -26,7 +28,9 @@ export default class Login extends Vue {
   password = '';
 
   handleLogin() {
-    console.log(this.email, this.password);
+    const globalState = getModule(GlobalState, this.$store);
+
+    console.log(globalState.posts);
   }
 }
 </script>
