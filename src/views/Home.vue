@@ -20,9 +20,11 @@ import GlobalState from '../store/GlobalState';
 export default class Home extends Vue {
   posts: Post[] = [];
 
-  created() {
+  async created() {
     const globalState = getModule(GlobalState, this.$store);
 
+    await globalState.fetchPosts();
+    console.log(globalState.posts);
     this.posts = globalState.posts;
   }
 }

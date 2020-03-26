@@ -3,5 +3,5 @@ interface Post {
   title: string;
   content: string;
   createDate: string | Date;
-  updateDate: string | Date;
+  modifyDate: string | Date;
 }

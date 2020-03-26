@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { VuexModule, Module } from 'vuex-module-decorators';
+import { VuexModule, Module, MutationAction } from 'vuex-module-decorators';
 
 import axios from 'axios';
 
@@ -14,13 +14,13 @@ const $http = axios.create({
   name: 'GlobalState',
 })
 export default class GlobalState extends VuexModule {
-  posts: Post[] = [
-    {
-      title: '123',
-      id: 1,
-      content: 'haaha',
-      createDate: new Date(),
-      updateDate: new Date(),
-    },
-  ];
+  posts: Post[] = [];
+
+  @MutationAction({ mutate: ['posts'] })
+  async fetchPosts() {
+    const res = await $http.get('/posts');
+    return {
+      posts: res.data.documents,
+    };
+  }
 }
