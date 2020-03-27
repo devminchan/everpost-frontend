@@ -20,7 +20,17 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+html {
+  min-height: 100% !important;
+}
+
+body {
+  min-height: 100% !important;
+}
+
 * {
+  padding: 0;
+  margin: 0;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
