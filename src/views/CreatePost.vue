@@ -1,6 +1,11 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar app color="indigo" dark><v-toolbar-title>Application</v-toolbar-title> </v-app-bar>
+    <v-app-bar app color="indigo" dark>
+      <v-btn icon color="white">
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
+      <v-toolbar-title class="toolbar">새 글 작성</v-toolbar-title>
+    </v-app-bar>
     <v-content>
       <div id="create-post-container">
         <input id="create-post_input_title" type="text" placeholder="제목을 입력하세요..." />
@@ -20,7 +25,11 @@ import { Component } from 'vue-property-decorator';
 export default class CreatePost extends Vue {}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.toolbar {
+  color: white;
+}
+
 #create-post-container {
   width: 100%;
 }
