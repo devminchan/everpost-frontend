@@ -8,9 +8,15 @@
     </v-app-bar>
     <v-content>
       <div id="create-post-container">
-        <input id="create-post_input_title" type="text" placeholder="제목을 입력하세요..." />
+        <div id="create-post_input-title-container">
+          <v-text-field
+            id="create-post_input-title"
+            type="text"
+            placeholder="제목을 입력하세요..."
+          />
+        </div>
         <div id="create-post_textarea-container">
-          <textarea id="create-post_textarea" placeholder="내용을 입력하세요..."></textarea>
+          <v-textarea solo placeholder="내용을 입력하세요..."></v-textarea>
         </div>
       </div>
     </v-content>
@@ -32,29 +38,32 @@ export default class CreatePost extends Vue {}
 
 #create-post-container {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#create-post_input_title {
-  font-size: 40px;
-  border: 0px;
-  width: 80%;
+#create-post_input-title-container {
+  margin-top: 8px;
+  width: 90%;
   @media (max-width: 768px) {
     font-size: 28px;
+    width: 98%;
+  }
+  .v-text-field {
+    font-size: 24pt;
+    border: 0px;
     width: 100%;
   }
 }
 
-#create-post_textarea {
-  text-align: start;
+#create-post_textarea-container {
   font-size: 28px;
-  border: 0px;
-  resize: none;
-  width: 80%;
-  height: 600px;
+  width: 90%;
   margin-top: 16px;
   @media (max-width: 768px) {
-    font-size: 18px;
-    width: 100%;
+    font-size: 16px;
+    width: 98%;
   }
 }
 </style>
