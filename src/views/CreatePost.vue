@@ -1,17 +1,15 @@
 <template>
-  <div id="create-post-container">
-    <input
-      id="create-post_input_title"
-      type="text"
-      placeholder="제목을 입력하세요..."
-    />
-    <div id="create-post_textarea-container">
-      <textarea
-        id="create-post_textarea"
-        placeholder="내용을 입력하세요..."
-      ></textarea>
-    </div>
-  </div>
+  <v-app id="inspire">
+    <v-app-bar app color="indigo" dark><v-toolbar-title>Application</v-toolbar-title> </v-app-bar>
+    <v-content>
+      <div id="create-post-container">
+        <input id="create-post_input_title" type="text" placeholder="제목을 입력하세요..." />
+        <div id="create-post_textarea-container">
+          <textarea id="create-post_textarea" placeholder="내용을 입력하세요..."></textarea>
+        </div>
+      </div>
+    </v-content>
+  </v-app>
 </template>
 
 <script lang="ts">
@@ -23,6 +21,10 @@ export default class CreatePost extends Vue {}
 </script>
 
 <style lang="scss">
+#create-post-container {
+  width: 100%;
+}
+
 #create-post_input_title {
   font-size: 40px;
   border: 0px;
