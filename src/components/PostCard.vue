@@ -1,8 +1,14 @@
 <template>
-  <div class="post-card">
-    <h2>{{ post.title }}</h2>
-    <div>{{ post.content }}</div>
-  </div>
+  <v-card class="post-card d-flex flex-column">
+    <v-card-title>{{ post.title }}</v-card-title>
+    <v-card-text class="post-card_content">{{ post.content }}</v-card-text>
+    <v-card-actions class="post-card_actions">
+      <v-btn text>수정하기</v-btn>
+      <v-btn text>
+        <span class="post-card_actions_delete">삭제하기</span>
+      </v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script lang="ts">
@@ -17,12 +23,27 @@ export default class PostCard extends Vue {
 
 <style lang="scss">
 .post-card {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  position: relative;
+  padding-bottom: 50px;
   width: 220px;
   height: 300px;
-  @media (max-width: 800px) {
-    width: 184px;
-    height: 269px;
+
+  @media (max-width: 768px) {
+    width: 180px;
+    height: 246px;
   }
+}
+
+.post-card_content {
+  text-align: start;
+}
+
+.post-card_actions {
+  position: absolute;
+  bottom: 0;
+}
+
+.post-card_actions_delete {
+  color: orangered;
 }
 </style>
