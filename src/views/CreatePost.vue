@@ -6,7 +6,7 @@
       </v-btn>
       <v-toolbar-title class="toolbar">새 글 작성</v-toolbar-title>
       <v-spacer />
-      <v-btn>
+      <v-btn @click="handlePost">
         작성완료
       </v-btn>
     </v-app-bar>
@@ -17,10 +17,11 @@
             id="create-post_input-title"
             type="text"
             placeholder="제목을 입력하세요..."
+            v-model="title"
           />
         </div>
         <div id="create-post_textarea-container">
-          <v-textarea solo placeholder="내용을 입력하세요..."></v-textarea>
+          <v-textarea solo placeholder="내용을 입력하세요..." v-model="content"></v-textarea>
         </div>
       </div>
     </v-content>
@@ -32,7 +33,14 @@ import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
 @Component
-export default class CreatePost extends Vue {}
+export default class CreatePost extends Vue {
+  title!: string;
+  content!: string;
+
+  handlePost() {
+    console.log(this.title, this.content);
+  }
+}
 </script>
 
 <style lang="scss" scoped>
