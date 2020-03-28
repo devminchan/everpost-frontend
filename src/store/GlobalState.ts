@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { VuexModule, Module, MutationAction, Mutation } from 'vuex-module-decorators';
+import { VuexModule, Module, MutationAction, Mutation, Action } from 'vuex-module-decorators';
 import axios from 'axios';
 
 Vue.use(Vuex);
@@ -17,6 +17,20 @@ const JWT_KEY = 'jwt';
 export default class GlobalState extends VuexModule {
   posts: Post[] = [];
   token = '';
+
+  get getPostById() {
+    return (postId: number): Post => {
+      const result = this.posts.find(item => {
+        return item.id === postId;
+      });
+
+      if (result) {
+        return result;
+      } else {
+        throw new Error('post not found');
+      }
+    };
+  }
 
   @Mutation
   loadJwtFromLocal() {
@@ -44,10 +58,8 @@ export default class GlobalState extends VuexModule {
     };
   }
 
-  @Mutation
+  @Action
   async createPost(data: CreatePostRequest) {
-    console.log('token', this.token);
-
     try {
       await $http.post('/posts', data, {
         headers: {
@@ -61,12 +73,12 @@ export default class GlobalState extends VuexModule {
     }
   }
 
-  @Mutation
-  async updatePost(postId: number, data: CreatePostRequest) {
-    console.log('token', this.token);
+  @Action
+  async updatePost(data: UpdatePostRequest) {
+    console.log('patch data', data);
 
     try {
-      await $http.patch(`/posts/${postId}`, data, {
+      await $http.patch(`/posts/${data.id}`, data, {
         headers: {
           Authorization: 'Bearer ' + this.token,
         },

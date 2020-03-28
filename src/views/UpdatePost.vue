@@ -17,11 +17,11 @@
             id="create-post_input-title"
             type="text"
             placeholder="제목을 입력하세요..."
-            v-model="title"
+            v-model="post.title"
           />
         </div>
         <div id="create-post_textarea-container">
-          <v-textarea solo placeholder="내용을 입력하세요..." v-model="content"></v-textarea>
+          <v-textarea solo placeholder="내용을 입력하세요..." v-model="post.content"></v-textarea>
         </div>
       </div>
     </v-content>
@@ -30,28 +30,38 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import { Component } from 'vue-property-decorator';
 import { getModule } from 'vuex-module-decorators';
 import GlobalState from '../store/GlobalState';
 
 @Component
 export default class CreatePost extends Vue {
-  @Prop(Object)
   post!: Post;
-  title!: string;
-  content!: string;
 
   created() {
-    this.title = this.post.title;
-    this.content = this.post.content;
+    const { id } = this.$route.params;
+    const postId = parseInt(id);
+
+    const globalState = getModule(GlobalState, this.$store);
+
+    try {
+      this.post = globalState.getPostById(postId);
+    } catch (e) {
+      console.error(e);
+      alert('해당 포스트를 찾을 수 없습니다.');
+      this.$router.push('/');
+    }
   }
 
   async handlePost() {
     const globalState = getModule(GlobalState, this.$store);
 
-    await globalState.updatePost(this.post.id, {
-      title: this.title,
-      content: this.content,
+    console.log('post data', this.post);
+
+    await globalState.updatePost({
+      id: this.post.id,
+      title: this.post.title,
+      content: this.post.content,
     });
   }
 }
