@@ -60,4 +60,21 @@ export default class GlobalState extends VuexModule {
       alert('포스트 생성에 실패했습니다');
     }
   }
+
+  @Mutation
+  async updatePost(postId: number, data: CreatePostRequest) {
+    console.log('token', this.token);
+
+    try {
+      await $http.patch(`/posts/${postId}`, data, {
+        headers: {
+          Authorization: 'Bearer ' + this.token,
+        },
+      });
+      alert('포스트 내용을 수정하였습니다');
+    } catch (e) {
+      console.error(e);
+      alert('포스트 내용 수정을 실패했습니다');
+    }
+  }
 }
