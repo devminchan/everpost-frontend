@@ -31,14 +31,21 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
+import { getModule } from 'vuex-module-decorators';
+import GlobalState from '../store/GlobalState';
 
 @Component
 export default class CreatePost extends Vue {
   title!: string;
   content!: string;
 
-  handlePost() {
-    console.log(this.title, this.content);
+  async handlePost() {
+    const globalState = getModule(GlobalState, this.$store);
+
+    await globalState.createPost({
+      title: this.title,
+      content: this.content,
+    });
   }
 }
 </script>

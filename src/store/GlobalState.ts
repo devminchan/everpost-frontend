@@ -1,11 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {
-  VuexModule,
-  Module,
-  MutationAction,
-  Mutation,
-} from 'vuex-module-decorators';
+import { VuexModule, Module, MutationAction, Mutation } from 'vuex-module-decorators';
 import axios from 'axios';
 
 Vue.use(Vuex);
@@ -47,5 +42,22 @@ export default class GlobalState extends VuexModule {
     return {
       posts: res.data.documents,
     };
+  }
+
+  @Mutation
+  async createPost(data: CreatePostRequest) {
+    console.log('token', this.token);
+
+    try {
+      await $http.post('/posts', data, {
+        headers: {
+          Authorization: 'Bearer ' + this.token,
+        },
+      });
+      alert('새 포스트를 생성했습니다!');
+    } catch (e) {
+      console.error(e);
+      alert('포스트 생성에 실패했습니다');
+    }
   }
 }
