@@ -1,10 +1,14 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar app color="indigo" dark>
+    <v-app-bar app color="indigo" dark absolute>
       <v-btn icon color="white">
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
       <v-toolbar-title class="toolbar">새 글 작성</v-toolbar-title>
+      <v-spacer />
+      <v-btn>
+        작성완료
+      </v-btn>
     </v-app-bar>
     <v-content>
       <div id="create-post-container">
