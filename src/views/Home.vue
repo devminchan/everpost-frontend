@@ -1,9 +1,11 @@
 <template>
-  <ul id="post-card-container">
-    <li v-for="post in posts" :key="post.id">
-      <PostCard :post="post"></PostCard>
-    </li>
-  </ul>
+  <v-app>
+    <ul id="post-card-container">
+      <li v-for="post in posts" :key="post.id">
+        <PostCard :post="post"></PostCard>
+      </li>
+    </ul>
+  </v-app>
 </template>
 
 <script lang="ts">

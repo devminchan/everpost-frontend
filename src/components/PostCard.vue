@@ -4,23 +4,41 @@
     <v-card-text class="post-card_content">{{ post.content }}</v-card-text>
     <v-card-actions class="post-card_actions">
       <v-btn text @click="handleEdit">수정하기</v-btn>
-      <v-btn text>
+      <v-btn text @click="handleAlert">
         <span class="post-card_actions_delete">삭제하기</span>
       </v-btn>
+      <RemoveNotification :isOn.sync="isNotiOn" :onRemove="handleDelete" :onCancel="handleCancel" />
     </v-card-actions>
   </v-card>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
+import RemoveNotification from './RemoveNotification.vue';
 
-@Component
+@Component({
+  components: { RemoveNotification },
+})
 export default class PostCard extends Vue {
   @Prop(Object)
   post!: Post;
 
+  isNotiOn = false;
+
   handleEdit() {
     this.$router.push(`/post/update/${this.post.id}`);
+  }
+
+  handleAlert() {
+    this.isNotiOn = true;
+  }
+
+  handleDelete() {
+    this.isNotiOn = false;
+  }
+
+  handleCancel() {
+    this.isNotiOn = false;
   }
 }
 </script>
