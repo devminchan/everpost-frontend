@@ -61,11 +61,15 @@ export default class GlobalState extends VuexModule {
   @Action
   async createPost(data: CreatePostRequest) {
     try {
-      await $http.post('/posts', data, {
+      const createdPost: Post = await $http.post('/posts', data, {
         headers: {
           Authorization: 'Bearer ' + this.token,
         },
       });
+
+      // push new post
+      this.posts.push(createdPost);
+
       alert('새 포스트를 생성했습니다!');
     } catch (e) {
       console.error(e);
@@ -76,11 +80,16 @@ export default class GlobalState extends VuexModule {
   @Action
   async updatePost(data: UpdatePostRequest) {
     try {
-      await $http.patch(`/posts/${data.id}`, data, {
+      const result: Post = await $http.patch(`/posts/${data.id}`, data, {
         headers: {
           Authorization: 'Bearer ' + this.token,
         },
       });
+
+      // update target index data
+      const idx = this.posts.findIndex(item => item.id === data.id);
+      this.posts[idx] = result;
+
       alert('포스트 내용을 수정하였습니다');
     } catch (e) {
       console.error(e);
@@ -96,6 +105,10 @@ export default class GlobalState extends VuexModule {
           Authorization: 'Bearer ' + this.token,
         },
       });
+
+      // delete target index data
+      const idx = this.posts.findIndex(item => item.id === id);
+      this.posts.splice(idx, 1);
 
       alert('포스트를 삭제하였습니다');
     } catch (e) {
