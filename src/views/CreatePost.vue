@@ -1,31 +1,17 @@
 <template>
-  <v-app id="inspire">
-    <v-app-bar app color="indigo" dark absolute>
-      <v-btn icon color="white">
-        <v-icon>mdi-arrow-left</v-icon>
-      </v-btn>
-      <v-toolbar-title class="toolbar">새 글 작성</v-toolbar-title>
-      <v-spacer />
-      <v-btn @click="handlePost">
-        작성완료
-      </v-btn>
-    </v-app-bar>
-    <v-content>
-      <div id="create-post-container">
-        <div id="create-post_input-title-container">
-          <v-text-field
-            id="create-post_input-title"
-            type="text"
-            placeholder="제목을 입력하세요..."
-            v-model="title"
-          />
-        </div>
-        <div id="create-post_textarea-container">
-          <v-textarea solo placeholder="내용을 입력하세요..." v-model="content"></v-textarea>
-        </div>
-      </div>
-    </v-content>
-  </v-app>
+  <div id="create-post-container">
+    <div id="create-post_input-title-container">
+      <v-text-field
+        id="create-post_input-title"
+        type="text"
+        placeholder="제목을 입력하세요..."
+        v-model="title"
+      />
+    </div>
+    <div id="create-post_textarea-container">
+      <v-textarea solo placeholder="내용을 입력하세요..." v-model="content"></v-textarea>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -38,6 +24,17 @@ import GlobalState from '../store/GlobalState';
 export default class CreatePost extends Vue {
   title!: string;
   content!: string;
+
+  created() {
+    const globalState = getModule(GlobalState, this.$store);
+
+    globalState.changeMenuList([
+      {
+        menuTitle: '직성완료',
+        action: this.handlePost,
+      },
+    ]);
+  }
 
   async handlePost() {
     const globalState = getModule(GlobalState, this.$store);

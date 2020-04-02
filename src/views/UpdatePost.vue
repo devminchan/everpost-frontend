@@ -1,31 +1,17 @@
 <template>
-  <v-app id="inspire">
-    <v-app-bar app color="indigo" dark absolute>
-      <v-btn icon color="white">
-        <v-icon>mdi-arrow-left</v-icon>
-      </v-btn>
-      <v-toolbar-title class="toolbar">포스트 수정</v-toolbar-title>
-      <v-spacer />
-      <v-btn @click="handlePost">
-        수정완료
-      </v-btn>
-    </v-app-bar>
-    <v-content>
-      <div id="create-post-container">
-        <div id="create-post_input-title-container">
-          <v-text-field
-            id="create-post_input-title"
-            type="text"
-            placeholder="제목을 입력하세요..."
-            v-model="post.title"
-          />
-        </div>
-        <div id="create-post_textarea-container">
-          <v-textarea solo placeholder="내용을 입력하세요..." v-model="post.content"></v-textarea>
-        </div>
-      </div>
-    </v-content>
-  </v-app>
+  <div id="create-post-container">
+    <div id="create-post_input-title-container">
+      <v-text-field
+        id="create-post_input-title"
+        type="text"
+        placeholder="제목을 입력하세요..."
+        v-model="post.title"
+      />
+    </div>
+    <div id="create-post_textarea-container">
+      <v-textarea solo placeholder="내용을 입력하세요..." v-model="post.content"></v-textarea>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">

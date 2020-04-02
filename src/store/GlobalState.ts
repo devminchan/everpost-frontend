@@ -18,6 +18,7 @@ export default class GlobalState extends VuexModule {
   posts: Post[] = [];
   token = '';
   isHome = true;
+  menuList: AppBarMenu[] = [];
 
   get getPostById() {
     return (postId: number): Post => {
@@ -120,5 +121,10 @@ export default class GlobalState extends VuexModule {
   @Mutation
   changeIsHomeState(isHomeState: boolean) {
     this.isHome = isHomeState;
+  }
+
+  @Mutation
+  changeMenuList(menuList: AppBarMenu[]) {
+    this.menuList = menuList;
   }
 }
