@@ -11,7 +11,7 @@
         {{ menu.menuTitle }}
       </v-btn>
     </div>
-    <v-btn v-if="!isHome" flat v-icon @click="handleBack">
+    <v-btn v-if="!isHome" v-icon @click="handleBack">
       <v-icon>mdi-close</v-icon>
     </v-btn>
   </v-app-bar>
