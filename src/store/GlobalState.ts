@@ -17,6 +17,7 @@ const JWT_KEY = 'jwt';
 export default class GlobalState extends VuexModule {
   posts: Post[] = [];
   token = '';
+  isHome = true;
 
   get getPostById() {
     return (postId: number): Post => {
@@ -114,5 +115,10 @@ export default class GlobalState extends VuexModule {
     } catch (e) {
       alert('포스트 삭제 도중 오류가 발생했습니다');
     }
+  }
+
+  @Mutation
+  changeIsHomeState(isHomeState: boolean) {
+    this.isHome = isHomeState;
   }
 }

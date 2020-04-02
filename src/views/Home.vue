@@ -1,14 +1,9 @@
 <template>
-  <v-app>
-    <CustomAppBar />
-    <v-content>
-      <ul id="post-card-container">
-        <li v-for="post in posts" :key="post.id">
-          <PostCard :post="post"></PostCard>
-        </li>
-      </ul>
-    </v-content>
-  </v-app>
+  <ul id="post-card-container">
+    <li v-for="post in posts" :key="post.id">
+      <PostCard :post="post"></PostCard>
+    </li>
+  </ul>
 </template>
 
 <script lang="ts">
@@ -16,12 +11,10 @@ import { Vue, Component } from 'vue-property-decorator';
 import PostCard from '@/components/PostCard.vue';
 import { getModule } from 'vuex-module-decorators';
 import GlobalState from '../store/GlobalState';
-import CustomAppBar from '@/components/CustomAppBar.vue';
 
 @Component({
   components: {
     PostCard,
-    CustomAppBar,
   },
 })
 export default class Home extends Vue {
