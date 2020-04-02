@@ -30,7 +30,7 @@ export default class CreatePost extends Vue {
 
     globalState.changeMenuList([
       {
-        menuTitle: '직성완료',
+        menuTitle: '작성완료',
         action: this.handlePost,
       },
     ]);

@@ -37,6 +37,13 @@ export default class CreatePost extends Vue {
       alert('해당 포스트를 찾을 수 없습니다.');
       this.$router.push('/');
     }
+
+    globalState.changeMenuList([
+      {
+        menuTitle: '수정완료',
+        action: this.handlePost,
+      },
+    ]);
   }
 
   async handlePost() {
