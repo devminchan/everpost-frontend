@@ -54,6 +54,8 @@ body {
   min-height: 100% !important;
 }
 
+$main-color: #2c3e50;
+
 * {
   padding: 0;
   margin: 0;
@@ -61,7 +63,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: $main-color;
 }
 
 #app {
@@ -69,6 +71,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: $main-color;
 }
 </style>

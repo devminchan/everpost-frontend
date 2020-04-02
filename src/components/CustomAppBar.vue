@@ -3,15 +3,22 @@
     <v-app-bar-nav-icon></v-app-bar-nav-icon>
     <v-toolbar-title>Everpost</v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-btn v-if="isHome" icon @click="handleCreate">
+    <v-btn color="#2c3e50" v-if="isHome" icon @click="handleCreate">
       <v-icon>mdi-plus</v-icon>
     </v-btn>
     <div v-if="!isHome">
-      <v-btn text v-for="menu in menuList" :key="menu.menuTitle" @click="menu.action">
+      <v-btn
+        color="#2c3e50"
+        class="custom-app-bar_menu"
+        text
+        v-for="menu in menuList"
+        :key="menu.menuTitle"
+        @click="menu.action"
+      >
         {{ menu.menuTitle }}
       </v-btn>
     </div>
-    <v-btn icon v-if="!isHome" v-icon @click="handleBack">
+    <v-btn color="#2c3e50" icon v-if="!isHome" v-icon @click="handleBack">
       <v-icon>mdi-close</v-icon>
     </v-btn>
   </v-app-bar>
