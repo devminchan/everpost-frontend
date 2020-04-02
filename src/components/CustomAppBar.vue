@@ -7,11 +7,11 @@
       <v-icon>mdi-plus</v-icon>
     </v-btn>
     <div v-if="!isHome">
-      <v-btn v-for="menu in menuList" :key="menu.menuTitle" @click="menu.action">
+      <v-btn text v-for="menu in menuList" :key="menu.menuTitle" @click="menu.action">
         {{ menu.menuTitle }}
       </v-btn>
     </div>
-    <v-btn v-if="!isHome" v-icon @click="handleBack">
+    <v-btn icon v-if="!isHome" v-icon @click="handleBack">
       <v-icon>mdi-close</v-icon>
     </v-btn>
   </v-app-bar>
