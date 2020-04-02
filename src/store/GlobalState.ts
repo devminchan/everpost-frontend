@@ -75,8 +75,6 @@ export default class GlobalState extends VuexModule {
 
   @Action
   async updatePost(data: UpdatePostRequest) {
-    console.log('patch data', data);
-
     try {
       await $http.patch(`/posts/${data.id}`, data, {
         headers: {
@@ -87,6 +85,21 @@ export default class GlobalState extends VuexModule {
     } catch (e) {
       console.error(e);
       alert('포스트 내용 수정을 실패했습니다');
+    }
+  }
+
+  @Action
+  async deletePost(id: number) {
+    try {
+      await $http.delete(`/posts/${id}`, {
+        headers: {
+          Authorization: 'Bearer ' + this.token,
+        },
+      });
+
+      alert('포스트를 삭제하였습니다');
+    } catch (e) {
+      alert('포스트 삭제 도중 오류가 발생했습니다');
     }
   }
 }

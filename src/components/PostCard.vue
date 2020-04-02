@@ -15,6 +15,8 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import RemoveNotification from './RemoveNotification.vue';
+import { getModule } from 'vuex-module-decorators';
+import GlobalState from '../store/GlobalState';
 
 @Component({
   components: { RemoveNotification },
@@ -33,8 +35,12 @@ export default class PostCard extends Vue {
     this.isNotiOn = true;
   }
 
-  handleDelete() {
+  async handleDelete() {
     this.isNotiOn = false;
+
+    const globalState = getModule(GlobalState, this.$store);
+
+    await globalState.deletePost(this.post.id);
   }
 
   handleCancel() {
