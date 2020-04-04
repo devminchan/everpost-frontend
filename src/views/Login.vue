@@ -30,12 +30,20 @@ export default class Login extends Vue {
   async handleLogin() {
     const globalState = getModule(GlobalState, this.$store);
 
-    await globalState.requestLogin({
-      email: this.email,
-      password: this.password,
-    });
+    try {
+      await globalState.requestLogin({
+        email: this.email,
+        password: this.password,
+      });
 
-    console.log('token', globalState.token);
+      // await globalState.fetchUserData();
+
+      alert('로그인에 성공하였습니다!');
+      this.$router.push('/');
+    } catch (e) {
+      console.error(e);
+      alert('로그인에 실패하였습니다. 다시 시도해주세요');
+    }
   }
 }
 </script>

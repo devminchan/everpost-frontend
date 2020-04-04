@@ -44,13 +44,11 @@ export default class GlobalState extends VuexModule {
     }
   }
 
-  @MutationAction({ mutate: ['user', 'token'] })
+  @Action
   async requestLogin(request: LoginRequest) {
     const res = await $http.post('/auth/email', request);
 
     localStorage.setItem(JWT_KEY, res.data.token);
-
-    return res.data;
   }
 
   @Action
