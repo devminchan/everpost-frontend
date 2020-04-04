@@ -18,6 +18,7 @@ export default class GlobalState extends VuexModule {
   posts: Post[] = [];
   token = '';
   isHome = true;
+  user!: User;
   menuList: AppBarMenu[] = [];
 
   get getPostById() {
@@ -43,13 +44,24 @@ export default class GlobalState extends VuexModule {
     }
   }
 
-  @MutationAction({ mutate: ['token'] })
+  @MutationAction({ mutate: ['user', 'token'] })
   async requestLogin(request: LoginRequest) {
     const res = await $http.post('/auth/email', request);
 
     localStorage.setItem(JWT_KEY, res.data.token);
 
     return res.data;
+  }
+
+  @Action
+  async fetchUserData() {
+    const res = await $http.get('/users/me', {
+      headers: {
+        Authorization: 'Bearer ' + this.token,
+      },
+    });
+
+    this.user = res.data;
   }
 
   @MutationAction({ mutate: ['posts'] })

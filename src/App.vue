@@ -29,6 +29,9 @@ export default class App extends Vue {
     // localStorage에 저장된 토큰 불러오기
     globalState.loadJwtFromLocal();
 
+    // User data 불러오기
+    globalState.fetchUserData();
+
     this.onRouteChanged(this.$route);
   }
 
