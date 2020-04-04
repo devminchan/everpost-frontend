@@ -43,6 +43,8 @@ export default class CreatePost extends Vue {
       title: this.title,
       content: this.content,
     });
+
+    this.$router.back();
   }
 }
 </script>
