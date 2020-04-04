@@ -5,7 +5,7 @@
     <v-spacer></v-spacer>
     <div v-if="isHome">
       <v-avatar color="indigo" size="36">
-        <span class="white--text headline">TEST</span>
+        <span class="white--text headline">{{ profileImage }}</span>
       </v-avatar>
       <v-btn color="#2c3e50" icon @click="handleCreate">
         <v-icon>mdi-plus</v-icon>
@@ -37,6 +37,16 @@ import GlobalState from '../store/GlobalState';
 
 @Component
 export default class CustomAppBar extends Vue {
+  get profileImage() {
+    const globalState = getModule(GlobalState, this.$store);
+
+    try {
+      return globalState.user.profileImage;
+    } catch (e) {
+      return 'why';
+    }
+  }
+
   get menuList() {
     const globalState = getModule(GlobalState, this.$store);
     return globalState.menuList;
