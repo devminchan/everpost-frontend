@@ -4,7 +4,7 @@
     <v-toolbar-title>Everpost</v-toolbar-title>
     <v-spacer></v-spacer>
     <div v-if="isHome">
-      <v-avatar color="indigo" size="36">
+      <v-avatar class="mr-8" color="indigo" size="36" @click="handleLogin">
         <span class="white--text headline">{{ profileImage }}</span>
       </v-avatar>
       <v-btn color="#2c3e50" icon @click="handleCreate">
@@ -14,7 +14,7 @@
     <div v-if="!isHome">
       <v-btn
         color="#2c3e50"
-        class="custom-app-bar_menu"
+        class="mr-8"
         text
         v-for="menu in menuList"
         :key="menu.menuTitle"
@@ -43,7 +43,7 @@ export default class CustomAppBar extends Vue {
     try {
       return globalState.user.profileImage;
     } catch (e) {
-      return 'why';
+      return 'N/A';
     }
   }
 
@@ -63,6 +63,10 @@ export default class CustomAppBar extends Vue {
 
   handleBack() {
     this.$router.back();
+  }
+
+  handleLogin() {
+    this.$router.push('/login');
   }
 }
 </script>
