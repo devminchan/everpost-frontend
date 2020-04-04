@@ -3,9 +3,14 @@
     <v-app-bar-nav-icon></v-app-bar-nav-icon>
     <v-toolbar-title>Everpost</v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-btn color="#2c3e50" v-if="isHome" icon @click="handleCreate">
-      <v-icon>mdi-plus</v-icon>
-    </v-btn>
+    <div v-if="isHome">
+      <v-avatar color="indigo" size="36">
+        <span class="white--text headline">TEST</span>
+      </v-avatar>
+      <v-btn color="#2c3e50" icon @click="handleCreate">
+        <v-icon>mdi-plus</v-icon>
+      </v-btn>
+    </div>
     <div v-if="!isHome">
       <v-btn
         color="#2c3e50"
@@ -17,10 +22,10 @@
       >
         {{ menu.menuTitle }}
       </v-btn>
+      <v-btn color="#2c3e50" icon v-if="!isHome" v-icon @click="handleBack">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
     </div>
-    <v-btn color="#2c3e50" icon v-if="!isHome" v-icon @click="handleBack">
-      <v-icon>mdi-close</v-icon>
-    </v-btn>
   </v-app-bar>
 </template>
 
