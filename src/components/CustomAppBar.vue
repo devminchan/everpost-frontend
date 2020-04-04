@@ -66,7 +66,11 @@ export default class CustomAppBar extends Vue {
   }
 
   handleLogin() {
-    this.$router.push('/login');
+    const globalState = getModule(GlobalState, this.$store);
+
+    if (!globalState.user) {
+      this.$router.push('/login');
+    }
   }
 }
 </script>
