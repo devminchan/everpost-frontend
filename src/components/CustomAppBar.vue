@@ -4,12 +4,9 @@
     <v-toolbar-title>Everpost</v-toolbar-title>
     <v-spacer></v-spacer>
     <div v-if="isHome">
-      <v-avatar class="mr-8" color="indigo" size="36" @click="handleLogin">
+      <v-avatar color="indigo" size="36" @click="handleLogin">
         <span class="white--text headline">{{ profileImage }}</span>
       </v-avatar>
-      <v-btn color="#2c3e50" icon @click="handleCreate">
-        <v-icon>mdi-plus</v-icon>
-      </v-btn>
     </div>
     <div v-if="!isHome">
       <v-btn
@@ -51,10 +48,6 @@ export default class CustomAppBar extends Vue {
   get isHome() {
     const globalState = getModule(GlobalState, this.$store);
     return globalState.isHome;
-  }
-
-  handleCreate() {
-    this.$router.push('/post/create');
   }
 
   handleBack() {
