@@ -18,7 +18,8 @@ export default class GlobalState extends VuexModule {
   posts: Post[] = [];
   token = '';
   isHome = true;
-  user!: User;
+  isLogined = false;
+  user!: User | null;
   menuList: AppBarMenu[] = [];
 
   get getPostById() {
@@ -53,13 +54,19 @@ export default class GlobalState extends VuexModule {
 
   @Action
   async fetchUserData() {
-    const res = await $http.get('/users/me', {
-      headers: {
-        Authorization: 'Bearer ' + this.token,
-      },
-    });
+    try {
+      const res = await $http.get('/users/me', {
+        headers: {
+          Authorization: 'Bearer ' + this.token,
+        },
+      });
 
-    this.user = res.data;
+      this.user = res.data;
+      this.isLogined = true;
+    } catch (e) {
+      this.user = null;
+      this.isLogined = false;
+    }
   }
 
   @MutationAction({ mutate: ['posts'] })

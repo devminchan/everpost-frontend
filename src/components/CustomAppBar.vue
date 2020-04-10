@@ -40,11 +40,7 @@ export default class CustomAppBar extends Vue {
   get profileImage() {
     const globalState = getModule(GlobalState, this.$store);
 
-    try {
-      return globalState.user.profileImage;
-    } catch (e) {
-      return 'N/A';
-    }
+    return globalState.user?.profileImage || 'N/A';
   }
 
   get menuList() {
