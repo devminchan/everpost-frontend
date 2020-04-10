@@ -4,9 +4,12 @@
     <v-toolbar-title>Everpost</v-toolbar-title>
     <v-spacer></v-spacer>
     <div v-if="isHome">
-      <v-avatar color="indigo" size="36" @click="handleLogin">
+      <v-avatar v-if="isLogined" color="indigo" size="36">
         <span class="white--text headline">{{ profileImage }}</span>
       </v-avatar>
+      <v-btn v-else color="#2c3e50" text @click="handleLogin">
+        로그인
+      </v-btn>
     </div>
     <div v-if="!isHome">
       <v-btn
@@ -48,6 +51,11 @@ export default class CustomAppBar extends Vue {
   get isHome() {
     const globalState = getModule(GlobalState, this.$store);
     return globalState.isHome;
+  }
+
+  get isLogined() {
+    const globalState = getModule(GlobalState, this.$store);
+    return globalState.isLogined;
   }
 
   handleBack() {
