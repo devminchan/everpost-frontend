@@ -47,7 +47,7 @@ export default class GlobalState extends VuexModule {
 
   @Action
   async requestLogin(request: LoginRequest) {
-    const res = await $http.post('/auth/email', request);
+    const res = await $http.post('/users/auth', request);
 
     localStorage.setItem(JWT_KEY, res.data.token);
   }

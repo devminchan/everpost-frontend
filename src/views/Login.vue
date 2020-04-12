@@ -1,19 +1,11 @@
 <template>
-  <div id="login-form-container">
-    <div id="login-form">
-      <span>Email</span>
-      <br />
-      <input type="email" v-model="email" />
-      <br />
-      <br />
-      <span>Password</span>
-      <br />
-      <input type="password" v-model="password" />
-      <br />
-      <br />
-      <button @click="handleLogin">Login</button>
-    </div>
-  </div>
+  <v-form>
+    <v-text-field v-model="email" :rules="emailRules" label="이메일 주소" />
+    <v-text-field type="password" v-model="password" :rules="passwordRules" label="패스워드" />
+    <v-btn @click="submit">
+      로그인
+    </v-btn>
+  </v-form>
 </template>
 
 <script lang="ts">
@@ -27,7 +19,7 @@ export default class Login extends Vue {
   email = '';
   password = '';
 
-  async handleLogin() {
+  async submit() {
     const globalState = getModule(GlobalState, this.$store);
 
     try {
@@ -47,35 +39,3 @@ export default class Login extends Vue {
   }
 }
 </script>
-
-<style lang="scss">
-#login-form {
-  background: white;
-  width: 40%;
-  @media (max-width: 768px) {
-    width: 320px;
-  }
-
-  span {
-    float: left;
-  }
-
-  input {
-    width: 100%;
-    font-size: 20px;
-  }
-
-  button {
-    width: 30%;
-    font-size: 24px;
-    background-color: white;
-    border: 1px solid rgba($color: #2c3e50, $alpha: 0.2);
-  }
-}
-
-#login-form-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-</style>
