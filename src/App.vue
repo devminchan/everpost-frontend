@@ -23,14 +23,14 @@ import CustomAppBar from '@/components/CustomAppBar.vue';
   },
 })
 export default class App extends Vue {
-  created() {
+  async created() {
     const globalState = getModule(GlobalState, this.$store);
 
     // localStorage에 저장된 토큰 불러오기
     globalState.loadJwtFromLocal();
 
     // User data 불러오기
-    globalState.fetchUserData();
+    await globalState.fetchUserData();
 
     this.onRouteChanged(this.$route);
   }

@@ -52,7 +52,7 @@ export default class GlobalState extends VuexModule {
     localStorage.setItem(JWT_KEY, res.data.token);
   }
 
-  @Action
+  @Mutation
   async fetchUserData() {
     try {
       const res = await $http.get('/users/me', {
