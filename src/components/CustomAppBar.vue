@@ -4,9 +4,14 @@
     <v-toolbar-title>Everpost</v-toolbar-title>
     <v-spacer></v-spacer>
     <div v-if="isHome">
-      <v-avatar v-if="isLogined" color="indigo" size="36">
-        <span class="white--text headline">{{ profileImage }}</span>
-      </v-avatar>
+      <div v-if="isLogined">
+        <v-avatar v-if="isLogined" color="indigo" size="36">
+          <span class="white--text headline">{{ profileImage }}</span>
+        </v-avatar>
+        <v-btn class="ml-4" icon color="#2c3e50" @click="handleCreatePost">
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+      </div>
       <v-btn v-else color="#2c3e50" text @click="handleLogin">
         로그인
       </v-btn>
@@ -60,6 +65,10 @@ export default class CustomAppBar extends Vue {
 
   handleBack() {
     this.$router.back();
+  }
+
+  handleCreatePost() {
+    this.$router.push('/post/create');
   }
 
   handleLogin() {
