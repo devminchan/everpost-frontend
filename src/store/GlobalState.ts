@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { VuexModule, Module, MutationAction, Mutation, Action } from 'vuex-module-decorators';
+import { VuexModule, Module, Mutation, Action } from 'vuex-module-decorators';
 import axios from 'axios';
 
 Vue.use(Vuex);
@@ -81,12 +81,20 @@ export default class GlobalState extends VuexModule {
     this.isLogined = isLogined;
   }
 
-  @MutationAction({ mutate: ['posts'] })
+  @Action
   async fetchPosts() {
-    const res = await $http.get('/posts');
-    return {
-      posts: res.data.documents,
-    };
+    const res = await $http.get('/posts', {
+      headers: {
+        Authorization: 'Bearer ' + this.token,
+      },
+    });
+
+    this.setPosts(res.data.documents);
+  }
+
+  @Mutation
+  setPosts(posts: Post[]) {
+    this.posts = posts;
   }
 
   @Action
