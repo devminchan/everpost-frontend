@@ -19,7 +19,7 @@ export default class GlobalState extends VuexModule {
   token = '';
   isHome = true;
   isLogined = false;
-  user!: User | null;
+  user: User | null = null;
   menuList: AppBarMenu[] = [];
 
   get getPostById() {
@@ -52,7 +52,7 @@ export default class GlobalState extends VuexModule {
     localStorage.setItem(JWT_KEY, res.data.token);
   }
 
-  @Mutation
+  @Action
   async fetchUserData() {
     try {
       const res = await $http.get('/users/me', {
@@ -61,12 +61,24 @@ export default class GlobalState extends VuexModule {
         },
       });
 
-      this.user = res.data;
-      this.isLogined = true;
+      this.setUser(res.data);
+      this.setIsLogined(true);
     } catch (e) {
-      this.user = null;
-      this.isLogined = false;
+      console.error('An error occured while app fetch user data');
+
+      this.setUser(null);
+      this.setIsLogined(false);
     }
+  }
+
+  @Mutation
+  setUser(user: User | null) {
+    this.user = user;
+  }
+
+  @Mutation
+  setIsLogined(isLogined: boolean) {
+    this.isLogined = isLogined;
   }
 
   @MutationAction({ mutate: ['posts'] })

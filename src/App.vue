@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-app>
-      <CustomAppBar />
+      <CustomAppBar :user="user" />
       <v-content>
         <router-view />
       </v-content>
@@ -23,6 +23,8 @@ import CustomAppBar from '@/components/CustomAppBar.vue';
   },
 })
 export default class App extends Vue {
+  user: User | null = null;
+
   async created() {
     const globalState = getModule(GlobalState, this.$store);
 
@@ -31,6 +33,8 @@ export default class App extends Vue {
 
     // User data 불러오기
     await globalState.fetchUserData();
+
+    this.user = globalState.user;
 
     this.onRouteChanged(this.$route);
   }

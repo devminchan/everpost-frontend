@@ -1,12 +1,11 @@
 <template>
   <v-app-bar app>
-    <v-app-bar-nav-icon></v-app-bar-nav-icon>
     <v-toolbar-title>Everpost</v-toolbar-title>
     <v-spacer></v-spacer>
     <div v-if="isHome">
       <div v-if="isLogined">
         <v-avatar v-if="isLogined" color="indigo" size="36">
-          <span class="white--text headline">{{ profileImage }}</span>
+          <span class="white--text headline">{{ username }}</span>
         </v-avatar>
         <v-btn class="ml-4" icon color="#2c3e50" @click="handleCreatePost">
           <v-icon>mdi-plus</v-icon>
@@ -42,10 +41,16 @@ import GlobalState from '../store/GlobalState';
 
 @Component
 export default class CustomAppBar extends Vue {
-  get profileImage() {
+  get username() {
     const globalState = getModule(GlobalState, this.$store);
 
-    return globalState.user?.profileImage || 'N/A';
+    console.log(globalState.user);
+
+    if (globalState.user?.username && globalState.user?.username.length > 0) {
+      return globalState.user?.username[0].toUpperCase();
+    }
+
+    return 'N/A';
   }
 
   get menuList() {
