@@ -33,7 +33,6 @@ export default class CreatePost extends Vue {
     try {
       this.post = globalState.getPostById(postId);
     } catch (e) {
-      console.error(e);
       alert('해당 포스트를 찾을 수 없습니다.');
       this.$router.push('/');
     }
@@ -48,8 +47,6 @@ export default class CreatePost extends Vue {
 
   async handlePost() {
     const globalState = getModule(GlobalState, this.$store);
-
-    console.log('post data', this.post);
 
     await globalState.updatePost({
       id: this.post.id,
