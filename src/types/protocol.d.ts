@@ -3,6 +3,10 @@ interface LoginRequest {
   password: string;
 }
 
+interface SignUpRequest extends LoginRequest {
+  username: string;
+}
+
 interface CreatePostRequest {
   title: string;
   content: string;

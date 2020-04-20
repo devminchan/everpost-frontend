@@ -11,9 +11,14 @@
           <v-icon>mdi-plus</v-icon>
         </v-btn>
       </div>
-      <v-btn v-else color="#2c3e50" text @click="handleLogin">
-        로그인
-      </v-btn>
+      <div v-else>
+        <v-btn color="#2c3e50" text @click="handleLogin">
+          로그인
+        </v-btn>
+        <v-btn color="#2c3e50" text @click="handleSignUp">
+          회원가입
+        </v-btn>
+      </div>
     </div>
     <div v-if="!isHome">
       <v-btn
@@ -81,6 +86,14 @@ export default class CustomAppBar extends Vue {
 
     if (!globalState.user) {
       this.$router.push('/login');
+    }
+  }
+
+  handleSignUp() {
+    const globalState = getModule(GlobalState, this.$store);
+
+    if (!globalState.user) {
+      this.$router.push('/signup');
     }
   }
 }

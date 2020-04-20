@@ -53,6 +53,11 @@ export default class GlobalState extends VuexModule {
   }
 
   @Action
+  async requestRegister(request: SignUpRequest) {
+    await $http.post('/users', request);
+  }
+
+  @Action
   async fetchUserData() {
     try {
       const res = await $http.get('/users/me', {
