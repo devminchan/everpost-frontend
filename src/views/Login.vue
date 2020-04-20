@@ -28,10 +28,9 @@ export default class Login extends Vue {
         password: this.password,
       });
 
-      // await globalState.fetchUserData();
-
       alert('로그인에 성공하였습니다!');
       this.$router.push('/');
+      location.reload();
     } catch (e) {
       console.error(e);
       alert('로그인에 실패하였습니다. 다시 시도해주세요');
