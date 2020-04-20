@@ -1,9 +1,11 @@
 <template>
-  <ul id="post-card-container">
-    <li v-for="post in posts" :key="post.id">
-      <PostCard :post="post"></PostCard>
-    </li>
-  </ul>
+  <v-container class="ml-8 mr-8">
+    <v-layout row wrap justify-start>
+      <v-flex xs13 md6 lg2 x12 v-for="post in posts" :key="post.id" class="ml-4 mt-4">
+        <PostCard :post="post" />
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script lang="ts">
