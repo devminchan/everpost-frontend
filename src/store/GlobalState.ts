@@ -6,7 +6,7 @@ import axios from 'axios';
 Vue.use(Vuex);
 
 const $http = axios.create({
-  baseURL: 'https://api-everpost.herokuapp.com',
+  baseURL: 'https://everpost.herokuapp.com',
 });
 
 const JWT_KEY = 'jwt';
